@@ -1,0 +1,16 @@
+# entorno virtual
+backend/venv/
+.env
+
+# variables de entorno
+backend/.env
+
+# Ignorar archivos de compilación
+*.log
+*.db
+*.sqlite3
+
+# Ignorar metadatos del IDE
+.vscode/
+.idea/
+*.swp
