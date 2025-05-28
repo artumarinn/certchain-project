@@ -1,5 +1,4 @@
 # entorno virtual
-backend/venv/
 .env
 
 # variables de entorno
