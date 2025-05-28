@@ -3,10 +3,10 @@ services:
   backend:
     build: ./backend
     ports:
-      - "8000:8000"  # Mapea puerto 8000 del host al 8000 del contenedor
+      - "8000:8000"  
     env_file:
-      - ./backend/.env  # Carga variables de entorno
+      - ./backend/.env 
     volumes:
-      - ./backend:/app  # Sincroniza código para desarrollo (cambios en caliente)
+      - ./backend:/app 
 
       

@@ -3,40 +3,40 @@ pragma solidity ^0.8.20;
 
 contract CertificateAnchor {
     struct Anchor {
-        address emitter; // Quién llamó a la función para anclar
-        string ipfsHash;         // El hash del certificado (o CID de IPFS)
-        uint256 timestamp;       // Cuándo se ancló
+        address emitter;     // Who called the function to anchor
+        string ipfsHash;     // The certificate hash (or IPFS CID)
+        uint256 timestamp;   // When it was anchored
     }
 
-    // Array público para almacenar todos los anclajes (se puede consultar directamente)
+    // Public array to store all anchors (can be queried directly)
     Anchor[] public anchors;
 
-    // Evento para facilitar la indexación y el seguimiento off-chain
+    // Event to facilitate off-chain indexing and tracking
     event CertificateAnchored(address indexed emitter, string ipfsHash, uint256 timestamp);
 
     /**
-     * @dev Permite a cualquier entidad anclar un hash de IPFS.
-     * En tu caso, será tu backend Python quien llamará a esta función.
-     * @param ipfsHash El hash del certificado o CID de IPFS a anclar.
+     * @dev Allows any entity to anchor an IPFS hash.
+     * In your case, your Python backend will call this function.
+     * @param ipfsHash The certificate hash or IPFS CID to anchor.
      */
     function anchorCertificate(string memory ipfsHash) external {
-        // Registra la información del anclaje
+        // Records the anchor information
         anchors.push(Anchor(msg.sender, ipfsHash, block.timestamp));
-        // Emite un evento para notificar que se ha anclado un certificado
+        // Emits an event to notify that a certificate has been anchored
         emit CertificateAnchored(msg.sender, ipfsHash, block.timestamp);
     }
 
     /**
-     * @dev Retorna el número total de anclajes registrados.
+     * @dev Returns the total number of registered anchors.
      */
     function getAnchorsCount() external view returns (uint256) {
         return anchors.length;
     }
 
     /**
-     * @dev Retorna un anclaje específico por su índice.
-     * Se puede usar `anchors(index)` ya que es un array público.
-     * @param index El índice del anclaje en el array.
+     * @dev Returns a specific anchor by its index.
+     * `anchors(index)` can be used as it is a public array.
+     * @param index The index of the anchor in the array.
      */
     function getAnchor(uint256 index) external view returns (address, string memory, uint256) {
         Anchor storage anchor = anchors[index];
