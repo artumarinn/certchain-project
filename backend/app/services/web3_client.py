@@ -34,11 +34,11 @@ if web3.is_connected():
 else:
     print("🟥No se pudo conectar al nodo UCH")
 
-# Connect to the Ethereum network sepolia testnet
-w3 = Web3(Web3.HTTPProvider('https://eth-sepolia.g.alchemy.com/v2/Epi2SNyJ_QWWIOe4Pdl-f'))
+# # Connect to the Ethereum network sepolia testnet
+# w3 = Web3(Web3.HTTPProvider('https://eth-sepolia.g.alchemy.com/v2/Epi2SNyJ_QWWIOe4Pdl-f'))
 
-# Get block by number
-latest_block = w3.eth.block_number
-block = w3.eth.get_block(latest_block)
+# # Get block by number
+# latest_block = w3.eth.block_number
+# block = w3.eth.get_block(latest_block)
 
-print(f"🟩Block: {block}")
+# print(f"🟩Block: {block}")
